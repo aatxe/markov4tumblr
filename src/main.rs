@@ -15,6 +15,7 @@ fn main() {
     let blogs = [""]; // populate me with tumblr blogs.
     let mut chain = Chain::for_strings();
     let mut client = Client::new();
+    println!("Populating chain...");
     for blog in blogs.iter() {
         let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text", 
                           blog, key);
@@ -31,11 +32,9 @@ fn main() {
             }
         }
     }
+    println!("Saving chain...");
     chain.save_utf8("output.json").unwrap();
-    println!("Samples:");
-    for msg in chain.str_iter_for(5) {
-        println!("{}", msg);
-    }
+    println!("Done.");
 }
 
 #[deriving(RustcDecodable)]
