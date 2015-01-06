@@ -37,7 +37,7 @@ fn main() {
     println!("Done.");
 }
 
-#[deriving(RustcDecodable)]
+#[derive(RustcDecodable)]
 struct TumblrResponse {
     response: Option<Response>,
 }
@@ -52,12 +52,12 @@ impl TumblrResponse {
     }
 }
 
-#[deriving(RustcDecodable)]
+#[derive(RustcDecodable)]
 struct Response {
     posts: Vec<Post>
 }
 
-#[deriving(RustcDecodable)]
+#[derive(RustcDecodable)]
 struct Post {
     body: String
 }
