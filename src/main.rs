@@ -1,9 +1,11 @@
+#![allow(unstable)]
 #![feature(slicing_syntax)]
 
 extern crate hyper;
 extern crate markov;
 extern crate "rustc-serialize" as rustc_serialize;
 
+use std::error::Error;
 use std::io::{IoError, IoErrorKind, IoResult};
 use hyper::Url;
 use hyper::client::Client;
@@ -19,8 +21,8 @@ fn main() {
     for blog in blogs.iter() {
         let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text", 
                           blog, key);
-        let res = client.get(Url::parse(url[]).unwrap()).send().unwrap().read_to_string().unwrap();
-        if let Ok(resp) = TumblrResponse::decode(res[]) {
+        let res = client.get(Url::parse(&url[]).unwrap()).send().unwrap().read_to_string().unwrap();
+        if let Ok(resp) = TumblrResponse::decode(&res[]) {
             if let Some(resp) = resp.response {
                 for post in resp.posts.iter() {
                     let cleaned = post.body.replace("\n", ".").replace("(", ".")
@@ -47,7 +49,7 @@ impl TumblrResponse {
         decode(string).map_err(|e| IoError {
             kind: IoErrorKind::InvalidInput,
             desc: "Failed to decode response.",
-            detail: Some(e.to_string()),
+            detail: e.detail(),
         })
     }
 }
