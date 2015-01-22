@@ -2,7 +2,7 @@
 name = "markov4tumblr"
 version = "0.0.1"
 dependencies = [
- "hyper 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hyper 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "markov 0.0.13 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.2.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -25,7 +25,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "hyper"
-version = "0.1.2"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cookie 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
