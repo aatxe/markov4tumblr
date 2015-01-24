@@ -5,6 +5,7 @@ extern crate hyper;
 extern crate markov;
 extern crate "rustc-serialize" as rustc_serialize;
 
+use std::borrow::ToOwned;
 use std::error::Error;
 use std::io::{IoError, IoErrorKind, IoResult};
 use hyper::Url;
@@ -49,7 +50,7 @@ impl TumblrResponse {
         decode(string).map_err(|e| IoError {
             kind: IoErrorKind::InvalidInput,
             desc: "Failed to decode response.",
-            detail: e.detail(),
+            detail: Some(e.description().to_owned()),
         })
     }
 }
