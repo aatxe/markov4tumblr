@@ -1,5 +1,4 @@
-#![allow(unstable)]
-#![feature(slicing_syntax)]
+#![feature(collections, core, io, slicing_syntax)]
 
 extern crate hyper;
 extern crate markov;
@@ -7,7 +6,7 @@ extern crate "rustc-serialize" as rustc_serialize;
 
 use std::borrow::ToOwned;
 use std::error::Error;
-use std::io::{IoError, IoErrorKind, IoResult};
+use std::old_io::{IoError, IoErrorKind, IoResult};
 use hyper::Url;
 use hyper::client::Client;
 use markov::Chain;
