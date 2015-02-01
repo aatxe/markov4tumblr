@@ -3,7 +3,7 @@ name = "markov4tumblr"
 version = "0.0.1"
 dependencies = [
  "hyper 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)",
- "markov 0.0.16 (registry+https://github.com/rust-lang/crates.io-index)",
+ "markov 0.0.17 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -60,7 +60,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "markov"
-version = "0.0.16"
+version = "0.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rustc-serialize 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",
