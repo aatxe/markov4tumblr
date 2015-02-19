@@ -1,4 +1,4 @@
-#![feature(collections, core, io, slicing_syntax)]
+#![feature(collections, core, io)]
 
 extern crate hyper;
 extern crate markov;
