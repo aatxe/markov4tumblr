@@ -1,4 +1,4 @@
-#![feature(collections, core, io)]
+#![feature(collections, core, old_io)]
 
 extern crate hyper;
 extern crate markov;
@@ -21,8 +21,8 @@ fn main() {
     for blog in blogs.iter() {
         let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text", 
                           blog, key);
-        let res = client.get(Url::parse(&url[]).unwrap()).send().unwrap().read_to_string().unwrap();
-        if let Ok(resp) = TumblrResponse::decode(&res[]) {
+        let res = client.get(Url::parse(&url).unwrap()).send().unwrap().read_to_string().unwrap();
+        if let Ok(resp) = TumblrResponse::decode(&res) {
             if let Some(resp) = resp.response {
                 for post in resp.posts.iter() {
                     let cleaned = post.body.replace("\n", ".").replace("(", ".")
