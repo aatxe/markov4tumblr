@@ -2,7 +2,7 @@
 name = "markov4tumblr"
 version = "0.0.1"
 dependencies = [
- "hyper 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hyper 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "markov 0.0.22 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -15,7 +15,7 @@ dependencies = [
  "openssl 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
- "url 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -30,7 +30,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "hyper"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cookie 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -41,7 +41,7 @@ dependencies = [
  "time 0.1.19 (registry+https://github.com/rust-lang/crates.io-index)",
  "unicase 0.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "unsafe-any 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "url 0.2.21 (registry+https://github.com/rust-lang/crates.io-index)",
+ "url 0.2.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -152,10 +152,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "url"
-version = "0.2.21"
+version = "0.2.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "matches 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.2.15 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
