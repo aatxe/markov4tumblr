@@ -1,12 +1,13 @@
-#![feature(collections, core, old_io)]
+#![feature(core, io)]
 
 extern crate hyper;
 extern crate markov;
 extern crate "rustc-serialize" as rustc_serialize;
 
 use std::borrow::ToOwned;
-use std::error::Error;
-use std::old_io::{IoError, IoErrorKind, IoResult};
+use std::error::Error as StdError;
+use std::io::{Error, ErrorKind, Result};
+use std::io::prelude::*;
 use hyper::Url;
 use hyper::client::Client;
 use markov::Chain;
@@ -21,13 +22,14 @@ fn main() {
     for blog in blogs.iter() {
         let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text", 
                           blog, key);
-        let res = client.get(Url::parse(&url).unwrap()).send().unwrap().read_to_string().unwrap();
+        let mut res = String::new();
+        client.get(Url::parse(&url).unwrap()).send().unwrap().read_to_string(&mut res).unwrap();
         if let Ok(resp) = TumblrResponse::decode(&res) {
             if let Some(resp) = resp.response {
                 for post in resp.posts.iter() {
                     let cleaned = post.body.replace("\n", ".").replace("(", ".")
                                            .replace(")", ".").replace("\"", ".");
-                    for sentence in cleaned.split_str(".") {
+                    for sentence in cleaned.split(".") {
                         chain.feed_str(sentence);
                     }
                 }
@@ -45,12 +47,11 @@ struct TumblrResponse {
 }
 
 impl TumblrResponse {
-    pub fn decode(string: &str) -> IoResult<TumblrResponse> {
-        decode(string).map_err(|e| IoError {
-            kind: IoErrorKind::InvalidInput,
-            desc: "Failed to decode response.",
-            detail: Some(e.description().to_owned()),
-        })
+    pub fn decode(string: &str) -> Result<TumblrResponse> {
+        decode(string).map_err(|e| 
+            Error::new(ErrorKind::InvalidInput, "Failed to decode response.", 
+                       Some(e.description().to_owned()))
+        )
     }
 }
 
