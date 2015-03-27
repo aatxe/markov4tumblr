@@ -1,8 +1,8 @@
-#![feature(core, io)]
+#![feature(io)]
 
 extern crate hyper;
 extern crate markov;
-extern crate "rustc-serialize" as rustc_serialize;
+extern crate rustc_serialize;
 
 use std::borrow::ToOwned;
 use std::error::Error as StdError;
