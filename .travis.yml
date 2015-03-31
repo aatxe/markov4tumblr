@@ -2,6 +2,7 @@ language: rust
 script:
   - cargo build --verbose
 notifications:
+  email: false
   irc:
     channels:
       - "irc.fyrechat.net#vana-commits"
