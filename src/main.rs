@@ -1,11 +1,7 @@
-#![feature(io)]
-
 extern crate hyper;
 extern crate markov;
 extern crate rustc_serialize;
 
-use std::borrow::ToOwned;
-use std::error::Error as StdError;
 use std::io::{Error, ErrorKind, Result};
 use std::io::prelude::*;
 use hyper::Url;
@@ -48,9 +44,8 @@ struct TumblrResponse {
 
 impl TumblrResponse {
     pub fn decode(string: &str) -> Result<TumblrResponse> {
-        decode(string).map_err(|e| 
-            Error::new(ErrorKind::InvalidInput, "Failed to decode response.", 
-                       Some(e.description().to_owned()))
+        decode(string).map_err(|_| 
+            Error::new(ErrorKind::InvalidInput, "Failed to decode response.")
         )
     }
 }
