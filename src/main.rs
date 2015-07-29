@@ -12,11 +12,11 @@ use rustc_serialize::json::decode;
 fn main() {
     let key = ""; // populate me with a tumblr API key.
     let blogs = [""]; // populate me with tumblr blogs.
-    let mut chain = Chain::for_strings();
+    let mut chain: Chain<String> = Chain::new();
     let mut client = Client::new();
     println!("Populating chain...");
     for blog in blogs.iter() {
-        let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text", 
+        let url = format!("http://api.tumblr.com/v2/blog/{}/posts/text?api_key={}&filter=text",
                           blog, key);
         let mut res = String::new();
         client.get(Url::parse(&url).unwrap()).send().unwrap().read_to_string(&mut res).unwrap();
@@ -33,7 +33,8 @@ fn main() {
         }
     }
     println!("Saving chain...");
-    chain.save_utf8("output.json").unwrap();
+    // FIXME no serialization support :(
+    // chain.save_utf8("output.json").unwrap();
     println!("Done.");
 }
 
@@ -44,7 +45,7 @@ struct TumblrResponse {
 
 impl TumblrResponse {
     pub fn decode(string: &str) -> Result<TumblrResponse> {
-        decode(string).map_err(|_| 
+        decode(string).map_err(|_|
             Error::new(ErrorKind::InvalidInput, "Failed to decode response.")
         )
     }
